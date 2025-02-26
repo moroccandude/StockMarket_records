@@ -1,0 +1,154 @@
+
+
+services:
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=airflow
+      - POSTGRES_PASSWORD=airflow
+      - POSTGRES_DB=airflow
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - crypto-net
+
+  airflow-init:
+    build: 
+      context: ./pipeline_orchestration
+      dockerfile: Dockerfile
+    environment:
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+    volumes:
+      # - ./data:./data
+      - ./airflow/logs:/opt/airflow/logs
+      # - ./hadoop/namenode_data/tmp:./tmp
+      - ./airflow/plugins:/opt/airflow/plugins
+      -  /var/run/docker.sock:/var/run/docker.sock
+      - ./hadoop/namenode_data/tmp:/hadoop/namenode_data/tmp
+    depends_on:
+      - postgres
+    networks:
+      - crypto-net
+    entrypoint: ["bash","-c","airflow db init && airflow users create --username admin --password admin --firstname Admin --lastname User --email admin@example.com --role Admin"]
+
+  airflow-webserver:
+    build: 
+      context: ./pipeline_orchestration
+      dockerfile: Dockerfile  # Pointing to the Dockerfile where the custom image is built
+    container_name: airflow-webserver
+    restart: always
+    environment:
+      - LOAD_EXAMPLES=False
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      - AIRFLOW__API__AUTH_BACKEND=airflow.api.auth.backend.basic_auth  # Authentification de l'API
+      - AIRFLOW__WEBSERVER__RBAC=True  # Activer RBAC
+      - AIRFLOW__WEBSERVER__WORKERS=4  # Nombre de workers pour le serveur web
+    volumes:
+      #  - ./apache/dags:/opt/airflow/dags
+      # - ./data:./data
+      - ./hadoop/namenode_data/tmp:/tmp
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      -  /var/run/docker.sock:/var/run/docker.sock
+      
+
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - airflow-init  
+    command: webserver
+    # entrypoint: ["bash","-c","airflow db init && airflow users create --username admin --password admin --firstname Admin --lastname User --email admin@example.com --role Admin"]
+
+    networks:
+      - crypto-net
+
+  airflow-scheduler:
+    build: 
+      context: ./pipeline_orchestration
+      dockerfile: Dockerfile
+    container_name: airflow-scheduler
+    restart: always
+    environment:
+      - LOAD_EXAMPLES=False
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+      - AIRFLOW__API__AUTH_BACKEND=airflow.api.auth.backend.basic_auth
+    depends_on:
+      - airflow-webserver
+      - postgres 
+      - airflow-init  # Attendre la base de données
+    volumes:
+      # - ./apache/dags:/opt/airflow/dags
+      # - ./data:./data
+      - ./hadoop/namenode_data/tmp:/tmp
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      -  /var/run/docker.sock:/var/run/docker.sock
+
+    command: scheduler
+    # entrypoint: ["bash","-c","airflow db init && airflow users create --username admin --password admin --firstname Admin --lastname User --email admin@example.com --role Admin"]
+
+    networks:
+      - crypto-net
+
+
+  data_ingestion:
+    build:
+      context: ./ingestion
+      dockerfile: Dockerfile
+    volumes:
+      - ./ingestion:/app
+    networks:
+      - crypto-net
+    command: tail -f /dev/null
+
+  # Hadoop NameNode
+  hadoop-namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: namenode
+    environment:
+      - CLUSTER_NAME=test-cluster
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+      - HDFS_CONF_dfs_namenode_name_dir=file:///hadoop/dfs/name
+    ports:
+      - "9870:9870"
+    volumes:
+      - ./hadoop/namenode_data:/hadoop/dfs/name
+      - ./hadoop/namenode_data/tmp:/hadoop/namenode_data/tmp
+    networks:
+      - crypto-net
+
+
+  # Hadoop DataNode
+  hadoop-datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: datanode
+    environment:
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+      - HDFS_CONF_dfs_datanode_data_dir=file:///hadoop/dfs/data
+    ports:
+      - "9864:9864"
+    volumes:
+      - ./hadoop/datanode_data:/hadoop/dfs/data
+      - ./hadoop/namenode_data/tmp:/hadoop/namenode_data/tmp
+    networks:
+      - crypto-net
+    depends_on:
+      - hadoop-namenode
+
+
+volumes:
+  hdfs:
+  postgres_data:
+
+networks:
+  crypto-net:
+    driver: bridge
