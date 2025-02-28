@@ -1,0 +1,85 @@
+[2025-02-27T19:50:44.875+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T19:50:44.900+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.run_mapreduce_job scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T19:50:44.923+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.run_mapreduce_job scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T19:50:44.924+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T19:50:44.951+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): run_mapreduce_job> on 2025-02-26 00:00:00+00:00
+[2025-02-27T19:50:44.960+0000] {standard_task_runner.py:57} INFO - Started process 232 to run task
+[2025-02-27T19:50:44.967+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'run_mapreduce_job', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmppfyg3g6t']
+[2025-02-27T19:50:44.974+0000] {standard_task_runner.py:85} INFO - Job 4: Subtask run_mapreduce_job
+[2025-02-27T19:50:45.007+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T19:50:45.063+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.run_mapreduce_job scheduled__2025-02-26T00:00:00+00:00 [running]> on host 66b504a65b04
+[2025-02-27T19:50:45.090+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T19:50:45.212+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='run_mapreduce_job' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T19:50:45.216+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-02-27T19:50:45.218+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', '\n        docker exec -i namenode bash -c "\n      hadoop jar /opt/hadoop-3.2.1/share/hadoop/tools/lib/hadoop-streaming-3.2.1.jar    -files /tmp/mapper.py,/tmp/reducer.py    -input /user/etudiant/crypto/raw/YYYY=2025/MM=02/DD=26/coingecko_raw.json    -output /user/etudiant/crypto/processed/YYYY=2025/MM=02/DD=26    -mapper mapper.py    -reducer reducer.py\n    ']
+[2025-02-27T19:50:45.235+0000] {subprocess.py:86} INFO - Output:
+[2025-02-27T19:50:45.240+0000] {subprocess.py:93} INFO - /bin/bash: -c: line 2: unexpected EOF while looking for matching `"'
+[2025-02-27T19:50:45.241+0000] {subprocess.py:93} INFO - /bin/bash: -c: line 5: syntax error: unexpected end of file
+[2025-02-27T19:50:45.242+0000] {subprocess.py:97} INFO - Command exited with return code 2
+[2025-02-27T19:50:45.264+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 210, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 2.
+[2025-02-27T19:50:45.274+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=coingecko_ingestion_dag, task_id=run_mapreduce_job, execution_date=20250226T000000, start_date=20250227T195044, end_date=20250227T195045
+[2025-02-27T19:50:45.298+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 4 for task run_mapreduce_job (Bash command failed. The command returned a non-zero exit code 2.; 232)
+[2025-02-27T19:50:45.310+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-02-27T19:50:45.339+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-27T20:38:05.221+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T20:38:05.236+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.run_mapreduce_job scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T20:38:05.249+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.run_mapreduce_job scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T20:38:05.250+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T20:38:05.273+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): run_mapreduce_job> on 2025-02-26 00:00:00+00:00
+[2025-02-27T20:38:05.278+0000] {standard_task_runner.py:57} INFO - Started process 232 to run task
+[2025-02-27T20:38:05.283+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'run_mapreduce_job', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmpontnto70']
+[2025-02-27T20:38:05.287+0000] {standard_task_runner.py:85} INFO - Job 4: Subtask run_mapreduce_job
+[2025-02-27T20:38:05.313+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T20:38:05.360+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.run_mapreduce_job scheduled__2025-02-26T00:00:00+00:00 [running]> on host 3c576f746ebe
+[2025-02-27T20:38:05.375+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T20:38:05.439+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='run_mapreduce_job' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T20:38:05.441+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-02-27T20:38:05.441+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', '\n        docker exec -i namenode bash -c "\n      hadoop jar /opt/hadoop-3.2.1/share/hadoop/tools/lib/hadoop-streaming-3.2.1.jar    -files /tmp/mapper.py,/tmp/reducer.py    -input /user/etudiant/crypto/raw/YYYY=2025/MM=02/DD=26/coingecko_raw.json    -output /user/etudiant/crypto/processed/YYYY=2025/MM=02/DD=26    -mapper mapper.py    -reducer reducer.py\n    ']
+[2025-02-27T20:38:05.457+0000] {subprocess.py:86} INFO - Output:
+[2025-02-27T20:38:05.460+0000] {subprocess.py:93} INFO - /bin/bash: -c: line 2: unexpected EOF while looking for matching `"'
+[2025-02-27T20:38:05.460+0000] {subprocess.py:93} INFO - /bin/bash: -c: line 5: syntax error: unexpected end of file
+[2025-02-27T20:38:05.461+0000] {subprocess.py:97} INFO - Command exited with return code 2
+[2025-02-27T20:38:05.475+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 210, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 2.
+[2025-02-27T20:38:05.478+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=coingecko_ingestion_dag, task_id=run_mapreduce_job, execution_date=20250226T000000, start_date=20250227T203805, end_date=20250227T203805
+[2025-02-27T20:38:05.492+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 4 for task run_mapreduce_job (Bash command failed. The command returned a non-zero exit code 2.; 232)
+[2025-02-27T20:38:05.506+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-02-27T20:38:05.523+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-27T22:16:43.426+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T22:16:43.443+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.run_mapreduce_job scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T22:16:43.464+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.run_mapreduce_job scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T22:16:43.464+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T22:16:43.481+0000] {taskinstance.py:1382} INFO - Executing <Task(BashOperator): run_mapreduce_job> on 2025-02-26 00:00:00+00:00
+[2025-02-27T22:16:43.487+0000] {standard_task_runner.py:57} INFO - Started process 355 to run task
+[2025-02-27T22:16:43.491+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'run_mapreduce_job', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmpximy3slj']
+[2025-02-27T22:16:43.496+0000] {standard_task_runner.py:85} INFO - Job 4: Subtask run_mapreduce_job
+[2025-02-27T22:16:43.512+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T22:16:43.548+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.run_mapreduce_job scheduled__2025-02-26T00:00:00+00:00 [running]> on host 2d549a908a24
+[2025-02-27T22:16:43.561+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T22:16:43.648+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='run_mapreduce_job' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T22:16:43.650+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2025-02-27T22:16:43.651+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', '\n            docker exec -i namenode bash -c "\n        hadoop jar /opt/hadoop-3.2.1/share/hadoop/tools/lib/hadoop-streaming-3.2.1.jar    -files /tmp/mapper.py,/tmp/reducer.py    -input /user/etudiant/crypto/raw/YYYY=2025/MM=02/DD=26/coingecko_raw.json    -output /user/etudiant/crypto/processed/YYYY=2025/MM=02/DD=26    -mapper mapper.py    -reducer reducer.py"\n        ']
+[2025-02-27T22:16:43.664+0000] {subprocess.py:86} INFO - Output:
+[2025-02-27T22:16:45.143+0000] {subprocess.py:93} INFO - 2025-02-27 22:16:45,140 INFO impl.MetricsConfig: Loaded properties from hadoop-metrics2.properties
+[2025-02-27T22:16:45.208+0000] {subprocess.py:93} INFO - 2025-02-27 22:16:45,207 INFO impl.MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+[2025-02-27T22:16:45.209+0000] {subprocess.py:93} INFO - 2025-02-27 22:16:45,207 INFO impl.MetricsSystemImpl: JobTracker metrics system started
+[2025-02-27T22:16:45.225+0000] {subprocess.py:93} INFO - 2025-02-27 22:16:45,223 WARN impl.MetricsSystemImpl: JobTracker metrics system already initialized!
+[2025-02-27T22:16:45.366+0000] {subprocess.py:93} INFO - 2025-02-27 22:16:45,365 ERROR streaming.StreamJob: Error Launching job : Output directory hdfs://namenode:9000/user/etudiant/crypto/processed/YYYY=2025/MM=02/DD=26 already exists
+[2025-02-27T22:16:45.366+0000] {subprocess.py:93} INFO - Streaming Command Failed!
+[2025-02-27T22:16:45.929+0000] {subprocess.py:97} INFO - Command exited with return code 5
+[2025-02-27T22:16:45.950+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/bash.py", line 210, in execute
+    raise AirflowException(
+airflow.exceptions.AirflowException: Bash command failed. The command returned a non-zero exit code 5.
+[2025-02-27T22:16:45.957+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=coingecko_ingestion_dag, task_id=run_mapreduce_job, execution_date=20250226T000000, start_date=20250227T221643, end_date=20250227T221645
+[2025-02-27T22:16:45.968+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 4 for task run_mapreduce_job (Bash command failed. The command returned a non-zero exit code 5.; 355)
+[2025-02-27T22:16:46.016+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-02-27T22:16:46.036+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check

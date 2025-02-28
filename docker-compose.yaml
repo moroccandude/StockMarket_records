@@ -13,7 +13,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
     networks:
       - crypto-net
 
@@ -57,6 +57,7 @@ services:
       - ./airflow/logs:/opt/airflow/logs
       - ./airflow/plugins:/opt/airflow/plugins
       -  /var/run/docker.sock:/var/run/docker.sock
+
       
 
     ports:
@@ -81,6 +82,8 @@ services:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
       - AIRFLOW__API__AUTH_BACKEND=airflow.api.auth.backend.basic_auth
+      - AIRFLOW__LOGGING__LOGGING_CONFIG_CLASS = airflow.logging_config.DEFAULT_LOGGING_CONFIG
+
     depends_on:
       - airflow-webserver
       - postgres 
@@ -92,6 +95,7 @@ services:
       - ./airflow/logs:/opt/airflow/logs
       - ./airflow/plugins:/opt/airflow/plugins
       -  /var/run/docker.sock:/var/run/docker.sock
+      # - ./logging-config.py:/opt/airflow/config/logging_config.py
 
     command: scheduler
     # entrypoint: ["bash","-c","airflow db init && airflow users create --username admin --password admin --firstname Admin --lastname User --email admin@example.com --role Admin"]
@@ -112,7 +116,9 @@ services:
 
   # Hadoop NameNode
   hadoop-namenode:
-    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    build: 
+     context: ./hadoop/namenode_data
+     dockerfile: Dockerfile
     container_name: namenode
     environment:
       - CLUSTER_NAME=test-cluster
@@ -122,7 +128,7 @@ services:
       - "9870:9870"
     volumes:
       - ./hadoop/namenode_data:/hadoop/dfs/name
-      - ./hadoop/namenode_data/tmp:/hadoop/namenode_data/tmp
+      - ./hadoop/namenode_data/tmp:/tmp
     networks:
       - crypto-net
 
@@ -138,7 +144,7 @@ services:
       - "9864:9864"
     volumes:
       - ./hadoop/datanode_data:/hadoop/dfs/data
-      - ./hadoop/namenode_data/tmp:/hadoop/namenode_data/tmp
+      - ./hadoop/namenode_data/tmp:/tmp
     networks:
       - crypto-net
     depends_on:

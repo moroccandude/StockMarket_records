@@ -1,0 +1,281 @@
+[2025-02-27T09:27:32.636+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T09:27:32.674+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T09:27:32.705+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T09:27:32.706+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T09:27:32.753+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): store_raw_data_in_hdfs> on 2025-02-26 00:00:00+00:00
+[2025-02-27T09:27:32.767+0000] {standard_task_runner.py:57} INFO - Started process 244 to run task
+[2025-02-27T09:27:32.774+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'store_raw_data_in_hdfs', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmpojme4wvr']
+[2025-02-27T09:27:32.783+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask store_raw_data_in_hdfs
+[2025-02-27T09:27:32.843+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T09:27:32.967+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [running]> on host e3ce2d78663a
+[2025-02-27T09:27:33.005+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T09:27:33.094+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='store_raw_data_in_hdfs' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T09:27:33.159+0000] {logging_mixin.py:151} INFO - result of | cd ../../../tmp && ls | :
+[2025-02-27T09:27:33.161+0000] {logging_mixin.py:151} INFO -  2029240f6d1128be89ddc32729463129
+coingecko_raw.json
+hadoop-root-namenode.pid
+hh.json
+hsperfdata_root
+jetty-0.0.0.0-9870-hdfs-_-any-3061065552211236423.dir
+pymp-3k7754a_
+pymp-fqk8c7u4
+tmp7gcz89_m
+tmpgd7_oni9
+xx.json
+[2025-02-27T09:27:33.190+0000] {logging_mixin.py:151} INFO - result of | cd ../ && ls | :
+[2025-02-27T09:27:33.193+0000] {logging_mixin.py:151} INFO -  ***
+microsoft
+[2025-02-27T09:27:33.211+0000] {logging_mixin.py:151} INFO - result of | cd ../../../ && ls | :
+[2025-02-27T09:27:33.213+0000] {logging_mixin.py:151} INFO -  ***-scheduler-autorestart
+bin
+boot
+clean-logs
+dev
+entrypoint
+etc
+home
+lib
+lib64
+media
+mnt
+opt
+proc
+root
+run
+sbin
+scripts
+srv
+sys
+tmp
+usr
+var
+[2025-02-27T09:27:33.214+0000] {logging_mixin.py:151} INFO - ***-scheduler-autorestart
+bin
+boot
+clean-logs
+dev
+entrypoint
+etc
+home
+lib
+lib64
+media
+mnt
+opt
+proc
+root
+run
+sbin
+scripts
+srv
+sys
+tmp
+usr
+var
+[2025-02-27T09:27:33.256+0000] {logging_mixin.py:151} INFO - result of | cd ../../../tmp && ls | :
+[2025-02-27T09:27:33.258+0000] {logging_mixin.py:151} INFO -  2029240f6d1128be89ddc32729463129
+coingecko_raw.json
+hadoop-root-namenode.pid
+hh.json
+hsperfdata_root
+jetty-0.0.0.0-9870-hdfs-_-any-3061065552211236423.dir
+pymp-3k7754a_
+pymp-fqk8c7u4
+tmp7gcz89_m
+tmpgd7_oni9
+xx.json
+[2025-02-27T09:27:33.260+0000] {logging_mixin.py:151} INFO - file created 
+[2025-02-27T09:27:36.704+0000] {logging_mixin.py:151} INFO - dir created
+[2025-02-27T09:27:39.417+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/coingecko_pipeline.py", line 84, in store_raw_data_in_hdfs
+    print(f"feedback : {a.stderr}")
+NameError: name 'a' is not defined
+[2025-02-27T09:27:39.428+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=coingecko_ingestion_dag, task_id=store_raw_data_in_hdfs, execution_date=20250226T000000, start_date=20250227T092732, end_date=20250227T092739
+[2025-02-27T09:27:39.443+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 3 for task store_raw_data_in_hdfs (name 'a' is not defined; 244)
+[2025-02-27T09:27:39.488+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-02-27T09:27:39.500+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-27T12:35:02.165+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T12:35:02.175+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T12:35:02.184+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T12:35:02.185+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T12:35:02.196+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): store_raw_data_in_hdfs> on 2025-02-26 00:00:00+00:00
+[2025-02-27T12:35:02.201+0000] {standard_task_runner.py:57} INFO - Started process 199 to run task
+[2025-02-27T12:35:02.203+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'store_raw_data_in_hdfs', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmpddorkkuh']
+[2025-02-27T12:35:02.205+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask store_raw_data_in_hdfs
+[2025-02-27T12:35:02.219+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T12:35:02.248+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [running]> on host ecdead1778e8
+[2025-02-27T12:35:02.257+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T12:35:02.311+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='store_raw_data_in_hdfs' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T12:35:02.333+0000] {logging_mixin.py:151} INFO - result of | cd ../../../tmp && ls | :
+[2025-02-27T12:35:02.334+0000] {logging_mixin.py:151} INFO -  2029240f6d1128be89ddc32729463129
+coingecko_raw.json
+hadoop-root-datanode.pid
+hadoop-root-namenode.pid
+hh.json
+hsperfdata_root
+jetty-0.0.0.0-9870-hdfs-_-any-1122358042592389164.dir
+jetty-0.0.0.0-9870-hdfs-_-any-3061065552211236423.dir
+jetty-0.0.0.0-9870-hdfs-_-any-4176651785217946628.dir
+jetty-0.0.0.0-9870-hdfs-_-any-8435056591466888593.dir
+jetty-0.0.0.0-9870-hdfs-_-any-8830247435510539164.dir
+jetty-localhost-38603-datanode-_-any-4072393327538571162.dir
+jetty-localhost-39677-datanode-_-any-3636862042653055511.dir
+jetty-localhost-46517-datanode-_-any-6662021037139745610.dir
+pymp-9hin6pbs
+pymp-fqk8c7u4
+tmp7gcz89_m
+tmpgd7_oni9
+xx.json
+[2025-02-27T12:35:02.344+0000] {logging_mixin.py:151} INFO - result of | cd ../ && ls | :
+[2025-02-27T12:35:02.344+0000] {logging_mixin.py:151} INFO -  ***
+microsoft
+[2025-02-27T12:35:02.355+0000] {logging_mixin.py:151} INFO - result of | cd ../../../ && ls | :
+[2025-02-27T12:35:02.355+0000] {logging_mixin.py:151} INFO -  ***-scheduler-autorestart
+bin
+boot
+clean-logs
+dev
+entrypoint
+etc
+home
+lib
+lib64
+media
+mnt
+opt
+proc
+root
+run
+sbin
+scripts
+srv
+sys
+tmp
+usr
+var
+[2025-02-27T12:35:02.355+0000] {logging_mixin.py:151} INFO - ***-scheduler-autorestart
+bin
+boot
+clean-logs
+dev
+entrypoint
+etc
+home
+lib
+lib64
+media
+mnt
+opt
+proc
+root
+run
+sbin
+scripts
+srv
+sys
+tmp
+usr
+var
+[2025-02-27T12:35:02.371+0000] {logging_mixin.py:151} INFO - result of | cd ../../../tmp && ls | :
+[2025-02-27T12:35:02.372+0000] {logging_mixin.py:151} INFO -  2029240f6d1128be89ddc32729463129
+coingecko_raw.json
+hadoop-root-datanode.pid
+hadoop-root-namenode.pid
+hh.json
+hsperfdata_root
+jetty-0.0.0.0-9870-hdfs-_-any-1122358042592389164.dir
+jetty-0.0.0.0-9870-hdfs-_-any-3061065552211236423.dir
+jetty-0.0.0.0-9870-hdfs-_-any-4176651785217946628.dir
+jetty-0.0.0.0-9870-hdfs-_-any-8435056591466888593.dir
+jetty-0.0.0.0-9870-hdfs-_-any-8830247435510539164.dir
+jetty-localhost-38603-datanode-_-any-4072393327538571162.dir
+jetty-localhost-39677-datanode-_-any-3636862042653055511.dir
+jetty-localhost-46517-datanode-_-any-6662021037139745610.dir
+pymp-9hin6pbs
+pymp-fqk8c7u4
+tmp7gcz89_m
+tmpgd7_oni9
+xx.json
+[2025-02-27T12:35:02.372+0000] {logging_mixin.py:151} INFO - file created 
+[2025-02-27T12:35:04.761+0000] {logging_mixin.py:151} INFO - dir created
+[2025-02-27T12:35:06.985+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-02-27T12:35:06.994+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=coingecko_ingestion_dag, task_id=store_raw_data_in_hdfs, execution_date=20250226T000000, start_date=20250227T123502, end_date=20250227T123506
+[2025-02-27T12:35:07.021+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-02-27T12:35:07.034+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-27T15:29:41.674+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T15:29:41.697+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T15:29:41.717+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T15:29:41.718+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T15:29:41.744+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): store_raw_data_in_hdfs> on 2025-02-26 00:00:00+00:00
+[2025-02-27T15:29:41.751+0000] {standard_task_runner.py:57} INFO - Started process 180 to run task
+[2025-02-27T15:29:41.758+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'store_raw_data_in_hdfs', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmphl_tpetg']
+[2025-02-27T15:29:41.764+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask store_raw_data_in_hdfs
+[2025-02-27T15:29:41.796+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T15:29:41.865+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [running]> on host 99e9d8e4b94e
+[2025-02-27T15:29:41.879+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T15:29:41.964+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='store_raw_data_in_hdfs' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T15:29:42.005+0000] {logging_mixin.py:151} INFO - file created 
+[2025-02-27T15:29:49.047+0000] {logging_mixin.py:151} INFO - dir created
+[2025-02-27T15:29:51.977+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-02-27T15:29:52.002+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=coingecko_ingestion_dag, task_id=store_raw_data_in_hdfs, execution_date=20250226T000000, start_date=20250227T152941, end_date=20250227T152952
+[2025-02-27T15:29:52.063+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-02-27T15:29:52.093+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-27T19:50:32.599+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T19:50:32.626+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T19:50:32.645+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T19:50:32.647+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T19:50:32.674+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): store_raw_data_in_hdfs> on 2025-02-26 00:00:00+00:00
+[2025-02-27T19:50:32.683+0000] {standard_task_runner.py:57} INFO - Started process 184 to run task
+[2025-02-27T19:50:32.689+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'store_raw_data_in_hdfs', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmph625u37j']
+[2025-02-27T19:50:32.695+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask store_raw_data_in_hdfs
+[2025-02-27T19:50:32.726+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T19:50:32.778+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [running]> on host 66b504a65b04
+[2025-02-27T19:50:32.791+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T19:50:32.856+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='store_raw_data_in_hdfs' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T19:50:32.885+0000] {logging_mixin.py:151} INFO - file created 
+[2025-02-27T19:50:40.289+0000] {logging_mixin.py:151} INFO - dir created
+[2025-02-27T19:50:43.268+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-02-27T19:50:43.294+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=coingecko_ingestion_dag, task_id=store_raw_data_in_hdfs, execution_date=20250226T000000, start_date=20250227T195032, end_date=20250227T195043
+[2025-02-27T19:50:43.346+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-02-27T19:50:43.385+0000] {taskinstance.py:2784} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-02-27T20:37:54.974+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T20:37:54.991+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T20:37:55.002+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T20:37:55.003+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T20:37:55.018+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): store_raw_data_in_hdfs> on 2025-02-26 00:00:00+00:00
+[2025-02-27T20:37:55.023+0000] {standard_task_runner.py:57} INFO - Started process 185 to run task
+[2025-02-27T20:37:55.029+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'store_raw_data_in_hdfs', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmpc909414s']
+[2025-02-27T20:37:55.031+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask store_raw_data_in_hdfs
+[2025-02-27T20:37:55.048+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T20:37:55.087+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [running]> on host 3c576f746ebe
+[2025-02-27T20:37:55.101+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T20:37:55.185+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='store_raw_data_in_hdfs' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T20:37:55.219+0000] {logging_mixin.py:151} INFO - file created 
+[2025-02-27T20:38:01.513+0000] {logging_mixin.py:151} INFO - dir created
+[2025-02-27T20:38:04.176+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-02-27T20:38:04.206+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=coingecko_ingestion_dag, task_id=store_raw_data_in_hdfs, execution_date=20250226T000000, start_date=20250227T203754, end_date=20250227T203804
+[2025-02-27T20:38:04.278+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-02-27T20:38:04.327+0000] {taskinstance.py:2784} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-02-27T22:16:32.988+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T22:16:33.006+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T22:16:33.018+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T22:16:33.019+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T22:16:33.034+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): store_raw_data_in_hdfs> on 2025-02-26 00:00:00+00:00
+[2025-02-27T22:16:33.040+0000] {standard_task_runner.py:57} INFO - Started process 305 to run task
+[2025-02-27T22:16:33.045+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'store_raw_data_in_hdfs', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmp3z_wl6lw']
+[2025-02-27T22:16:33.049+0000] {standard_task_runner.py:85} INFO - Job 3: Subtask store_raw_data_in_hdfs
+[2025-02-27T22:16:33.069+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T22:16:33.114+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-26T00:00:00+00:00 [running]> on host 2d549a908a24
+[2025-02-27T22:16:33.136+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T22:16:33.256+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='store_raw_data_in_hdfs' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T22:16:33.336+0000] {logging_mixin.py:151} INFO - file created 
+[2025-02-27T22:16:40.203+0000] {logging_mixin.py:151} INFO - dir created
+[2025-02-27T22:16:42.752+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-02-27T22:16:42.764+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=coingecko_ingestion_dag, task_id=store_raw_data_in_hdfs, execution_date=20250226T000000, start_date=20250227T221633, end_date=20250227T221642
+[2025-02-27T22:16:42.794+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-02-27T22:16:42.813+0000] {taskinstance.py:2784} INFO - 1 downstream tasks scheduled from follow-on schedule check
