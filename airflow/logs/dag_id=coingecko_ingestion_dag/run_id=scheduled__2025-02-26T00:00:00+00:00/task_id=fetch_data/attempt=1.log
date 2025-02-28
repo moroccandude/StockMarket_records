@@ -1,0 +1,168 @@
+[2025-02-27T00:20:28.869+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T00:20:28.884+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T00:20:28.896+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T00:20:28.897+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T00:20:28.914+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): fetch_data> on 2025-02-26 00:00:00+00:00
+[2025-02-27T00:20:28.919+0000] {standard_task_runner.py:57} INFO - Started process 250 to run task
+[2025-02-27T00:20:28.925+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'fetch_data', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '7', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmpeqq3iaqp']
+[2025-02-27T00:20:28.931+0000] {standard_task_runner.py:85} INFO - Job 7: Subtask fetch_data
+[2025-02-27T00:20:28.965+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T00:20:29.028+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [running]> on host df63850bb5b8
+[2025-02-27T00:20:29.044+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T00:20:29.149+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='fetch_data' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T00:20:29.164+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connection.py", line 174, in _new_conn
+    conn = connection.create_connection(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/util/connection.py", line 72, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/local/lib/python3.8/socket.py", line 918, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 714, in urlopen
+    httplib_response = self._make_request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 403, in _make_request
+    self._validate_conn(conn)
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 1053, in _validate_conn
+    conn.connect()
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connection.py", line 363, in connect
+    self.sock = conn = self._new_conn()
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connection.py", line 186, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x7f38bdb07eb0>: Failed to establish a new connection: [Errno -2] Name or service not known
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/connectionpool.py", line 798, in urlopen
+    retries = retries.increment(
+  File "/home/airflow/.local/lib/python3.8/site-packages/urllib3/util/retry.py", line 592, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.coingecko.com', port=443): Max retries exceeded with url: /api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f38bdb07eb0>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/coingecko_pipeline.py", line 27, in fetch_coingecko_data
+    response = requests.get(url, params=params)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/requests/adapters.py", line 519, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.coingecko.com', port=443): Max retries exceeded with url: /api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f38bdb07eb0>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+[2025-02-27T00:20:29.183+0000] {taskinstance.py:1400} INFO - Marking task as UP_FOR_RETRY. dag_id=coingecko_ingestion_dag, task_id=fetch_data, execution_date=20250226T000000, start_date=20250227T002028, end_date=20250227T002029
+[2025-02-27T00:20:29.207+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 7 for task fetch_data (HTTPSConnectionPool(host='api.coingecko.com', port=443): Max retries exceeded with url: /api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f38bdb07eb0>: Failed to establish a new connection: [Errno -2] Name or service not known')); 250)
+[2025-02-27T00:20:29.226+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-02-27T00:20:29.275+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-27T09:27:30.911+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T09:27:30.922+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T09:27:30.936+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T09:27:30.937+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T09:27:30.953+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): fetch_data> on 2025-02-26 00:00:00+00:00
+[2025-02-27T09:27:30.958+0000] {standard_task_runner.py:57} INFO - Started process 242 to run task
+[2025-02-27T09:27:30.963+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'fetch_data', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmpxau7nane']
+[2025-02-27T09:27:30.966+0000] {standard_task_runner.py:85} INFO - Job 2: Subtask fetch_data
+[2025-02-27T09:27:30.986+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T09:27:31.038+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [running]> on host e3ce2d78663a
+[2025-02-27T09:27:31.058+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T09:27:31.153+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='fetch_data' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T09:27:31.359+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-02-27T09:27:31.368+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=coingecko_ingestion_dag, task_id=fetch_data, execution_date=20250226T000000, start_date=20250227T092730, end_date=20250227T092731
+[2025-02-27T09:27:31.388+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-02-27T09:27:31.403+0000] {taskinstance.py:2784} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-02-27T12:35:00.581+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T12:35:00.591+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T12:35:00.600+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T12:35:00.600+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T12:35:00.611+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): fetch_data> on 2025-02-26 00:00:00+00:00
+[2025-02-27T12:35:00.616+0000] {standard_task_runner.py:57} INFO - Started process 197 to run task
+[2025-02-27T12:35:00.618+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'fetch_data', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmpm_e5p9pa']
+[2025-02-27T12:35:00.621+0000] {standard_task_runner.py:85} INFO - Job 2: Subtask fetch_data
+[2025-02-27T12:35:00.634+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T12:35:00.662+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [running]> on host ecdead1778e8
+[2025-02-27T12:35:00.672+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T12:35:00.728+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='fetch_data' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T12:35:01.197+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-02-27T12:35:01.207+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=coingecko_ingestion_dag, task_id=fetch_data, execution_date=20250226T000000, start_date=20250227T123500, end_date=20250227T123501
+[2025-02-27T12:35:01.248+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-02-27T12:35:01.265+0000] {taskinstance.py:2784} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-02-27T15:29:39.863+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T15:29:39.880+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T15:29:39.896+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T15:29:39.898+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T15:29:39.918+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): fetch_data> on 2025-02-26 00:00:00+00:00
+[2025-02-27T15:29:39.923+0000] {standard_task_runner.py:57} INFO - Started process 178 to run task
+[2025-02-27T15:29:39.928+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'fetch_data', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmpyhn80851']
+[2025-02-27T15:29:39.932+0000] {standard_task_runner.py:85} INFO - Job 2: Subtask fetch_data
+[2025-02-27T15:29:39.951+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T15:29:40.009+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [running]> on host 99e9d8e4b94e
+[2025-02-27T15:29:40.021+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T15:29:40.106+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='fetch_data' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T15:29:40.588+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-02-27T15:29:40.602+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=coingecko_ingestion_dag, task_id=fetch_data, execution_date=20250226T000000, start_date=20250227T152939, end_date=20250227T152940
+[2025-02-27T15:29:40.641+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-02-27T15:29:40.693+0000] {taskinstance.py:2784} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-02-27T19:50:26.065+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T19:50:26.078+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T19:50:26.092+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T19:50:26.093+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T19:50:26.116+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): fetch_data> on 2025-02-26 00:00:00+00:00
+[2025-02-27T19:50:26.124+0000] {standard_task_runner.py:57} INFO - Started process 177 to run task
+[2025-02-27T19:50:26.132+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'fetch_data', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmp8cbngac8']
+[2025-02-27T19:50:26.135+0000] {standard_task_runner.py:85} INFO - Job 2: Subtask fetch_data
+[2025-02-27T19:50:26.167+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T19:50:26.233+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [running]> on host 66b504a65b04
+[2025-02-27T19:50:26.253+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T19:50:26.392+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='fetch_data' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T19:50:31.157+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-02-27T19:50:31.181+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=coingecko_ingestion_dag, task_id=fetch_data, execution_date=20250226T000000, start_date=20250227T195026, end_date=20250227T195031
+[2025-02-27T19:50:31.247+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-02-27T19:50:31.297+0000] {taskinstance.py:2784} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-02-27T20:37:46.710+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T20:37:46.724+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T20:37:46.737+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T20:37:46.737+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T20:37:46.752+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): fetch_data> on 2025-02-26 00:00:00+00:00
+[2025-02-27T20:37:46.757+0000] {standard_task_runner.py:57} INFO - Started process 183 to run task
+[2025-02-27T20:37:46.760+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'fetch_data', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmp7pj2gj0o']
+[2025-02-27T20:37:46.764+0000] {standard_task_runner.py:85} INFO - Job 2: Subtask fetch_data
+[2025-02-27T20:37:46.824+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T20:37:46.948+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [running]> on host 3c576f746ebe
+[2025-02-27T20:37:46.966+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T20:37:47.045+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='fetch_data' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T20:37:54.300+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-02-27T20:37:54.323+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=coingecko_ingestion_dag, task_id=fetch_data, execution_date=20250226T000000, start_date=20250227T203746, end_date=20250227T203754
+[2025-02-27T20:37:54.371+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-02-27T20:37:54.402+0000] {taskinstance.py:2784} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-02-27T22:16:31.698+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T22:16:31.709+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T22:16:31.718+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [queued]>
+[2025-02-27T22:16:31.719+0000] {taskinstance.py:1361} INFO - Starting attempt 1 of 2
+[2025-02-27T22:16:31.732+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): fetch_data> on 2025-02-26 00:00:00+00:00
+[2025-02-27T22:16:31.736+0000] {standard_task_runner.py:57} INFO - Started process 303 to run task
+[2025-02-27T22:16:31.740+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'fetch_data', 'scheduled__2025-02-26T00:00:00+00:00', '--job-id', '2', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmptyfkhyb8']
+[2025-02-27T22:16:31.744+0000] {standard_task_runner.py:85} INFO - Job 2: Subtask fetch_data
+[2025-02-27T22:16:31.759+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T22:16:31.799+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.fetch_data scheduled__2025-02-26T00:00:00+00:00 [running]> on host 2d549a908a24
+[2025-02-27T22:16:31.812+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-27T22:16:31.887+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='fetch_data' AIRFLOW_CTX_EXECUTION_DATE='2025-02-26T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-26T00:00:00+00:00'
+[2025-02-27T22:16:32.283+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-02-27T22:16:32.296+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=coingecko_ingestion_dag, task_id=fetch_data, execution_date=20250226T000000, start_date=20250227T221631, end_date=20250227T221632
+[2025-02-27T22:16:32.330+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-02-27T22:16:32.353+0000] {taskinstance.py:2784} INFO - 1 downstream tasks scheduled from follow-on schedule check

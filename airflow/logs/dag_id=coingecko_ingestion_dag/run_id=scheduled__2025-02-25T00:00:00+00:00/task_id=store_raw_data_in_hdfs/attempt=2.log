@@ -1,0 +1,298 @@
+[2025-02-26T21:03:10.570+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-26T21:03:10.590+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-25T00:00:00+00:00 [queued]>
+[2025-02-26T21:03:10.607+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-25T00:00:00+00:00 [queued]>
+[2025-02-26T21:03:10.608+0000] {taskinstance.py:1361} INFO - Starting attempt 2 of 2
+[2025-02-26T21:03:10.626+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): store_raw_data_in_hdfs> on 2025-02-25 00:00:00+00:00
+[2025-02-26T21:03:10.634+0000] {standard_task_runner.py:57} INFO - Started process 256 to run task
+[2025-02-26T21:03:10.637+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'store_raw_data_in_hdfs', 'scheduled__2025-02-25T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmp_7n9zz5e']
+[2025-02-26T21:03:10.641+0000] {standard_task_runner.py:85} INFO - Job 4: Subtask store_raw_data_in_hdfs
+[2025-02-26T21:03:10.672+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-26T21:03:10.728+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-25T00:00:00+00:00 [running]> on host 689609bdff45
+[2025-02-26T21:03:10.749+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-26T21:03:10.837+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='store_raw_data_in_hdfs' AIRFLOW_CTX_EXECUTION_DATE='2025-02-25T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-25T00:00:00+00:00'
+[2025-02-26T21:03:10.867+0000] {logging_mixin.py:151} INFO - /tmp
+[2025-02-26T21:03:13.369+0000] {logging_mixin.py:151} INFO - Erreur lors de l'exécution de la commande Docker/HDFS: Command '['docker cp /tmp/coingecko_raw.json namenode:/tmp/coingecko_raw.json']' returned non-zero exit status 1.
+[2025-02-26T21:03:13.371+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/coingecko_pipeline.py", line 66, in store_raw_data_in_hdfs
+    subprocess.run(["docker cp /tmp/coingecko_raw.json namenode:/tmp/coingecko_raw.json"],shell=True,check=True)
+  File "/usr/local/lib/python3.8/subprocess.py", line 516, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['docker cp /tmp/coingecko_raw.json namenode:/tmp/coingecko_raw.json']' returned non-zero exit status 1.
+[2025-02-26T21:03:13.396+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=coingecko_ingestion_dag, task_id=store_raw_data_in_hdfs, execution_date=20250225T000000, start_date=20250226T210310, end_date=20250226T210313
+[2025-02-26T21:03:13.426+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 4 for task store_raw_data_in_hdfs (Command '['docker cp /tmp/coingecko_raw.json namenode:/tmp/coingecko_raw.json']' returned non-zero exit status 1.; 256)
+[2025-02-26T21:03:13.444+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-02-26T21:03:13.465+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-26T22:27:30.303+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-26T22:27:30.316+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-25T00:00:00+00:00 [queued]>
+[2025-02-26T22:27:30.328+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-25T00:00:00+00:00 [queued]>
+[2025-02-26T22:27:30.329+0000] {taskinstance.py:1361} INFO - Starting attempt 2 of 2
+[2025-02-26T22:27:30.344+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): store_raw_data_in_hdfs> on 2025-02-25 00:00:00+00:00
+[2025-02-26T22:27:30.351+0000] {standard_task_runner.py:57} INFO - Started process 173 to run task
+[2025-02-26T22:27:30.354+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'store_raw_data_in_hdfs', 'scheduled__2025-02-25T00:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmp3ts7e8fp']
+[2025-02-26T22:27:30.358+0000] {standard_task_runner.py:85} INFO - Job 5: Subtask store_raw_data_in_hdfs
+[2025-02-26T22:27:30.375+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-26T22:27:30.416+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-25T00:00:00+00:00 [running]> on host b03c2ff40cc3
+[2025-02-26T22:27:30.429+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-26T22:27:30.502+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='store_raw_data_in_hdfs' AIRFLOW_CTX_EXECUTION_DATE='2025-02-25T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-25T00:00:00+00:00'
+[2025-02-26T22:27:30.532+0000] {logging_mixin.py:151} INFO - result of | cd ../../../tmp && ls | :
+[2025-02-26T22:27:30.533+0000] {logging_mixin.py:151} INFO -  2029240f6d1128be89ddc32729463129
+coingecko_raw.json
+hh.json
+pymp-d847x3x1
+pymp-fqk8c7u4
+tmp7gcz89_m
+xx.json
+[2025-02-26T22:27:30.547+0000] {logging_mixin.py:151} INFO - result of | cd ../ && ls | :
+[2025-02-26T22:27:30.548+0000] {logging_mixin.py:151} INFO -  ***
+microsoft
+[2025-02-26T22:27:30.570+0000] {logging_mixin.py:151} INFO - result of | cd ../../../ && ls | :
+[2025-02-26T22:27:30.571+0000] {logging_mixin.py:151} INFO -  ***-scheduler-autorestart
+bin
+boot
+clean-logs
+dev
+entrypoint
+etc
+home
+lib
+lib64
+media
+mnt
+opt
+proc
+root
+run
+sbin
+scripts
+srv
+sys
+tmp
+usr
+var
+[2025-02-26T22:27:30.573+0000] {logging_mixin.py:151} INFO - ***-scheduler-autorestart
+bin
+boot
+clean-logs
+dev
+entrypoint
+etc
+home
+lib
+lib64
+media
+mnt
+opt
+proc
+root
+run
+sbin
+scripts
+srv
+sys
+tmp
+usr
+var
+[2025-02-26T22:27:30.609+0000] {logging_mixin.py:151} INFO - result of | cd ../../../tmp && ls | :
+[2025-02-26T22:27:30.609+0000] {logging_mixin.py:151} INFO -  2029240f6d1128be89ddc32729463129
+coingecko_raw.json
+hh.json
+pymp-d847x3x1
+pymp-fqk8c7u4
+tmp7gcz89_m
+xx.json
+[2025-02-26T22:27:30.610+0000] {logging_mixin.py:151} INFO - file created 
+[2025-02-26T22:27:33.838+0000] {logging_mixin.py:151} INFO - dir created
+[2025-02-26T22:27:33.871+0000] {logging_mixin.py:151} INFO - feedback : 
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default
+                           "/home/***/.docker")
+  -c, --context string     Name of the context to use to connect to the
+                           daemon (overrides DOCKER_HOST env var and
+                           default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level
+                           ("debug"|"info"|"warn"|"error"|"fatal")
+                           (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default
+                           "/home/***/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default
+                           "/home/***/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default
+                           "/home/***/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  builder     Manage builds
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+
+To get more help with docker, check out our guides at https://docs.docker.com/go/guides/
+[2025-02-26T22:27:33.872+0000] {python.py:194} INFO - Done. Returned value was: None
+[2025-02-26T22:27:33.884+0000] {taskinstance.py:1400} INFO - Marking task as SUCCESS. dag_id=coingecko_ingestion_dag, task_id=store_raw_data_in_hdfs, execution_date=20250225T000000, start_date=20250226T222730, end_date=20250226T222733
+[2025-02-26T22:27:33.939+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2025-02-26T22:27:33.957+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-02-26T22:48:36.104+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-26T22:48:36.120+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-25T00:00:00+00:00 [queued]>
+[2025-02-26T22:48:36.135+0000] {taskinstance.py:1159} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-25T00:00:00+00:00 [queued]>
+[2025-02-26T22:48:36.135+0000] {taskinstance.py:1361} INFO - Starting attempt 2 of 2
+[2025-02-26T22:48:36.153+0000] {taskinstance.py:1382} INFO - Executing <Task(PythonOperator): store_raw_data_in_hdfs> on 2025-02-25 00:00:00+00:00
+[2025-02-26T22:48:36.158+0000] {standard_task_runner.py:57} INFO - Started process 267 to run task
+[2025-02-26T22:48:36.163+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'coingecko_ingestion_dag', 'store_raw_data_in_hdfs', 'scheduled__2025-02-25T00:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/coingecko_pipeline.py', '--cfg-path', '/tmp/tmpi_qg64b1']
+[2025-02-26T22:48:36.166+0000] {standard_task_runner.py:85} INFO - Job 5: Subtask store_raw_data_in_hdfs
+[2025-02-26T22:48:36.185+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-26T22:48:36.251+0000] {task_command.py:415} INFO - Running <TaskInstance: coingecko_ingestion_dag.store_raw_data_in_hdfs scheduled__2025-02-25T00:00:00+00:00 [running]> on host 2c0e598ffd0f
+[2025-02-26T22:48:36.279+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-02-26T22:48:36.399+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='etudiant' AIRFLOW_CTX_DAG_ID='coingecko_ingestion_dag' AIRFLOW_CTX_TASK_ID='store_raw_data_in_hdfs' AIRFLOW_CTX_EXECUTION_DATE='2025-02-25T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-02-25T00:00:00+00:00'
+[2025-02-26T22:48:36.444+0000] {logging_mixin.py:151} INFO - result of | cd ../../../tmp && ls | :
+[2025-02-26T22:48:36.445+0000] {logging_mixin.py:151} INFO -  2029240f6d1128be89ddc32729463129
+coingecko_raw.json
+hh.json
+pymp-fqk8c7u4
+pymp-kmbpuwje
+tmp7gcz89_m
+xx.json
+[2025-02-26T22:48:36.471+0000] {logging_mixin.py:151} INFO - result of | cd ../ && ls | :
+[2025-02-26T22:48:36.473+0000] {logging_mixin.py:151} INFO -  ***
+microsoft
+[2025-02-26T22:48:36.495+0000] {logging_mixin.py:151} INFO - result of | cd ../../../ && ls | :
+[2025-02-26T22:48:36.496+0000] {logging_mixin.py:151} INFO -  ***-scheduler-autorestart
+bin
+boot
+clean-logs
+dev
+entrypoint
+etc
+home
+lib
+lib64
+media
+mnt
+opt
+proc
+root
+run
+sbin
+scripts
+srv
+sys
+tmp
+usr
+var
+[2025-02-26T22:48:36.497+0000] {logging_mixin.py:151} INFO - ***-scheduler-autorestart
+bin
+boot
+clean-logs
+dev
+entrypoint
+etc
+home
+lib
+lib64
+media
+mnt
+opt
+proc
+root
+run
+sbin
+scripts
+srv
+sys
+tmp
+usr
+var
+[2025-02-26T22:48:36.535+0000] {logging_mixin.py:151} INFO - result of | cd ../../../tmp && ls | :
+[2025-02-26T22:48:36.535+0000] {logging_mixin.py:151} INFO -  2029240f6d1128be89ddc32729463129
+coingecko_raw.json
+hh.json
+pymp-fqk8c7u4
+pymp-kmbpuwje
+tmp7gcz89_m
+xx.json
+[2025-02-26T22:48:36.536+0000] {logging_mixin.py:151} INFO - file created 
+[2025-02-26T22:48:39.387+0000] {logging_mixin.py:151} INFO - dir created
+[2025-02-26T22:48:41.539+0000] {logging_mixin.py:151} INFO - Erreur lors de l'exécution de la commande Docker/HDFS: Command '['docker  exec -u root namenode hdfs dfs -put -f ../../../tmp/coingecko_raw.json /user/etudiant/crypto/raw/YYYY=2025/MM=02/DD=25']' returned non-zero exit status 1.
+[2025-02-26T22:48:41.541+0000] {taskinstance.py:1943} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 192, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 209, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/coingecko_pipeline.py", line 79, in store_raw_data_in_hdfs
+    subprocess.run(
+  File "/usr/local/lib/python3.8/subprocess.py", line 516, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['docker  exec -u root namenode hdfs dfs -put -f ../../../tmp/coingecko_raw.json /user/etudiant/crypto/raw/YYYY=2025/MM=02/DD=25']' returned non-zero exit status 1.
+[2025-02-26T22:48:41.576+0000] {taskinstance.py:1400} INFO - Marking task as FAILED. dag_id=coingecko_ingestion_dag, task_id=store_raw_data_in_hdfs, execution_date=20250225T000000, start_date=20250226T224836, end_date=20250226T224841
+[2025-02-26T22:48:41.608+0000] {standard_task_runner.py:104} ERROR - Failed to execute job 5 for task store_raw_data_in_hdfs (Command '['docker  exec -u root namenode hdfs dfs -put -f ../../../tmp/coingecko_raw.json /user/etudiant/crypto/raw/YYYY=2025/MM=02/DD=25']' returned non-zero exit status 1.; 267)
+[2025-02-26T22:48:41.649+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 1
+[2025-02-26T22:48:41.667+0000] {taskinstance.py:2784} INFO - 0 downstream tasks scheduled from follow-on schedule check
